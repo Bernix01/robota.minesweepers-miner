@@ -1,0 +1,16 @@
+{
+  "name": "minesweepers",
+  "version": "1.0.0",
+  "description": "Buscaminas de robota",
+  "scripts": {
+    "radio": "node scripts/radio.js"
+  },
+  "author": "Guillermo Bernal",
+  "license": "MIT",
+  "dependencies": {
+    "gps": "^0.4.7",
+    "rosnodejs": "^2.2.0",
+    "serialport": "^6.2.2",
+    "sx127x": "0.0.0"
+  }
+}

@@ -1,0 +1,6 @@
+<launch>
+  <!-- <node name="sensor_gyro" pkg="minesweepers" type="sensor_gyro.py" /> -->
+  <node name="gps" pkg="minesweepers" type="gps_antenna.js" />
+  <!-- <node name="sensor_pedro" pkg="minesweepers" type="sensor_pedro.py" /> -->
+  <!-- <node name="mine_detection" pkg="minesweepers" type="node_detectionMine" /> -->
+</launch>
