@@ -9,11 +9,12 @@ from picamera.array import PiRGBArray
 from picamera import PiCamera
 
 
-def camera():
+def camera():       
     lowerBound = np.array([0, 0, 0])
-    upperBound = np.array([0, 0, 61])
-    kernelOpen = np.ones((5, 5))
-    kernelClose = np.ones((20, 20))
+    upperBound = np.array([349, 70, 30])
+
+    kernelOpen = np.ones((5, 5), np.uint8)
+    kernelClose = np.ones((20, 20), np.uint8)
     # initialize the camera and grab a reference to the raw camera capture
     cam = PiCamera()
 
@@ -34,6 +35,8 @@ def camera():
         imgHSV = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
         # create the Mask
         mask = cv2.inRange(imgHSV, lowerBound, upperBound)
+        #bitwise and 
+        res = cv2.bitwise_and(img, img, mask=mask)
         # morphology
         maskOpen = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernelOpen)
         maskClose = cv2.morphologyEx(maskOpen, cv2.MORPH_CLOSE, kernelClose)
