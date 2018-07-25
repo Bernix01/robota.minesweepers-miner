@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
-from minesweepers.srv import *
+from minesweepers.srv import map_location
 import rospy
-from minesweepers.msg import Detection_parameter
+from minesweepers.msg import MapLocation
 
 
 def handler_map_location(req):
@@ -24,21 +24,18 @@ def handler_map_location(req):
     rospy.loginfo("Current time %i %i", t_now.secs, t_now.nsecs)
     if not((t_now-t_gyro) < k or (t_now-t_gyro) < k):
         if (acurracy_x_gyro > acurracy_x_gps):
-            pub.publish(rospy.get_param('gyroD/x_gyro'), rospy.get_param('gyroD/y_gyro'))
             rospy.loginfo(rospy.get_param('gyroD/x_gyro'), rospy.get_param('gyroD/y_gyro'))
             return {
                 " x " : x_gyro,
                 " y " : y_gyro,
             }
         else:
-            pub.publish(rospy.get_param('gpsD/x_gps'), rospy.get_param('gpsD/y_gps'))
             rospy.loginfo(rospy.get_param('gpsD/x_gps'), rospy.get_param('gpsD/y_gps'))
             return {
                 " x " : x_gps,
                 " y " : y_gps,
             }
     else:
-        pub.publish(x = -1, y = -1)
         rospy.loginfo(x = -1, y = -1)
         return {
                 " x " : -1,
@@ -47,7 +44,7 @@ def handler_map_location(req):
 
 def map_location_server():
     rospy.init_node('map_location_server') #inicializamos el nodo de servivio
-    s = rospy.Service('map_location', rospy_minesweepers.srv.map_locationRequest, handler_map_location) #declarar el servivio
+    rospy.Service('map_location', map_location, handler_map_location) #declarar el servivio
     rate = rospy.Rate(10)
     
     while not rospy.is_shutdown():
@@ -59,7 +56,7 @@ def map_location_server():
         rospy.loginfo("gpsD are %s, %s, %s, %s, %s", x_gps, y_gps, t_gps, acurracy_x_gps, acurracy_y_gps)
 
         k = 20
-        pub = rospy.Publisher('map_location', String)
+        pub = rospy.Publisher('map_location', MapLocation)
         t_gyro = rospy.get_param('gyroD/t_gyro')
         acurracy_x_gyro = rospy.get_param('gyroD/acurracy_x_gyro')
         acurracy_y_gyro = rospy.get_param('gyroD/acurracy_y_gyro')

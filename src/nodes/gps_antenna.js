@@ -21,7 +21,7 @@ const Delimiter = SerialPort.parsers.Delimiter;
   const port = new SerialPort("/dev/serial0", {
     baudRate: 9600
   });
-  
+
   const parser = new Readline();
   const delimiter = new Delimiter({ delimiter: "\r\n" });
   port.pipe(delimiter);
@@ -32,15 +32,22 @@ const Delimiter = SerialPort.parsers.Delimiter;
   port.write("AT+CGNSTST=1\r\n");
 
   const gps = new GPS();
-  nh.getParam("gps_start_point").then(GPS_START_POINT => {
+  nh.getParam("GPS_START_POINT")
+    .then(GPS_START_POINT => {
       gps.on("data", function(data) {
         // rosnodejs.log.info(data, gps.state);
         // rosnodejs.log.info(JSON.stringify(data));
         const state = gps.state;
-        if(state.lat)
-        const msg = new GPSMessage();
-        msg.data = {};
-        pub.publish(msg);
+        if (state && state.lat && state.lon) {
+          const msg = new GPSMessage();
+          const distance = gps.distance(GPS_START_POINT[0],GPS_START_POINT[1],state.lat,state.lon)
+          msg.data = {
+            lat: state.lat,
+            lng: state.lon,
+            distance: distance
+          };
+          pub.publish(msg);
+        }
       });
 
       port.on("data", function(data) {
