@@ -2,6 +2,8 @@
 
 from minesweepers.srv import *
 import rospy
+from minesweepers.msg import Detection_parameter
+
 
 def handler_map_location(req):
     gyroD = rospy.get_param('gyroD')
@@ -57,7 +59,7 @@ def map_location_server():
         rospy.loginfo("gpsD are %s, %s, %s, %s, %s", x_gps, y_gps, t_gps, acurracy_x_gps, acurracy_y_gps)
 
         k = 20
-        pub = rospy.Publisher(param_talker, String)
+        pub = rospy.Publisher('map_location', String)
         t_gyro = rospy.get_param('gyroD/t_gyro')
         acurracy_x_gyro = rospy.get_param('gyroD/acurracy_x_gyro')
         acurracy_y_gyro = rospy.get_param('gyroD/acurracy_y_gyro')
