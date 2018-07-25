@@ -30,8 +30,8 @@ if __name__ == '__main__':
     try:
         rospy.init_node('buscaminas')
         rospy.wait_for_service('send_message')
-        rospy.wait_for_node('camera')
-        rospy.wait_for_node('detection_sensor_pedro')
+        # rospy.wait_for_node('camera')
+        # rospy.wait_for_node('detection_sensor_pedro')
         node = Buscaminas()
         rospy.spin()
     except rospy.ROSInterruptException:
