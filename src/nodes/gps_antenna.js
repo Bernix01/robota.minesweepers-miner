@@ -6,7 +6,6 @@ const rosnodejs = require("rosnodejs");
 const GPS = require("gps");
 const SerialPort = require("serialport");
 const Readline = SerialPort.parsers.Readline;
-const Delimiter = SerialPort.parsers.Delimiter;
 
 (async () => {
   await rosnodejs.initNode("gps", {
