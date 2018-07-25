@@ -10,7 +10,7 @@ class Buscaminas():
     def __init__(self):
         rospy.Subscriber('detection_sensor_pedro',
                          Detection_parameter, self.detection_mine_cb)
-        rospy.Subscriber('camera', Detection_parameter, self.camera_cb)
+        rospy.Subscriber('camera', String, self.camera_cb)
         self.send_message = rospy.ServiceProxy('send_message', ComRadio)
 
     def detection_mine_cb(self, data):

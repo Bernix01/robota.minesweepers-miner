@@ -1,8 +1,12 @@
 <launch>
-  <node name="sensor_gyro" pkg="minesweepers" type="sensor_gyro.py" />
-  <node name="gps" pkg="minesweepers" type="gps_antenna.js" />
-  <node name="sensor_pedro" pkg="minesweepers" type="sensor_pedro.py" />
-  <node name="mine_detection" pkg="minesweepers" type="node_detectionMine" />
   <rosparam param="GPIO_FOCO">17</rosparam>
   <rosparam param="GPS_START_POINT">[2.32232,7.34234]</rosparam>
+  <node name="sensor_gyro" pkg="minesweepers" type="sensor_gyro.py" />
+  <node name="gps" pkg="minesweepers" type="gps_antenna.js" />
+  <node name="radio" pkg="minesweepers" type="radio.js" />
+  <node name="sensor_pedro" pkg="minesweepers" type="sensor_pedro.py" />
+  <node name="buscaminas" pkg="minesweepers" type="buscaminas.py" />
+  <node name="camera" pkg="minesweepers" type="camera.py" />
+  <node name="mine_detection" pkg="minesweepers" type="detectionMine.py" />
+  <node name="map_location" pkg="minesweepers" type="map_location_server.py" />
 </launch>
