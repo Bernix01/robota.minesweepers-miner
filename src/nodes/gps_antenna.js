@@ -4,7 +4,6 @@
 
 const rosnodejs = require("rosnodejs");
 const GPS = require("gps");
-// const angles = require("angles");
 const SerialPort = require("serialport");
 const Readline = SerialPort.parsers.Readline;
 const Delimiter = SerialPort.parsers.Delimiter;
