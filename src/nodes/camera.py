@@ -29,7 +29,7 @@ def camera():
         rawCapture = PiRGBArray(cam)
         cam.capture(rawCapture, format="bgr")
         img = rawCapture.array
-        img = cv2.resize(img, (340, 220))
+        img = cv2.resize(img, (640, 480))
 
         # convert BGR to HSV
         imgHSV = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
