@@ -14,7 +14,7 @@ def sensor_pedro():
     valor_min = 300
     valor_max = 500
     b = False
-    while (b=False):
+    while b==False:
         try:
             ser = serial.Serial(
                 port='/dev/ttyACM0',
@@ -23,8 +23,8 @@ def sensor_pedro():
                 stopbits=serial.STOPBITS_ONE,
                 bytesize=serial.EIGHTBITS,
                 timeout=1)
-                b = True
-        except
+            b = True
+        except:
             pass
     gpio_foco = rospy.get_param("GPIO_FOCO")
     GPIO.setmode(GPIO.BCM)             # choose BCM or BOARD

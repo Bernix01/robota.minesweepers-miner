@@ -52,6 +52,7 @@ add_message_files(
   FILES
   Gyro.msg
   Gps.msg
+  MapLocation.msg
 )
 
 ## Generate services in the 'srv' folder

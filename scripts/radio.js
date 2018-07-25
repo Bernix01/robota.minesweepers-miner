@@ -32,9 +32,7 @@ const SX127x = require('sx127x');
     }
 
     const service = nh.advertiseService('/send_message', ComRadioRequest, (req, resp) => {
-      console.log(req)
       sx127x.write(new Buffer(req.str), function (err) {
-        console.log('\t', err ? err : 'success');
         resp = err ? err : 'Ok';
       });
       return true;
@@ -46,7 +44,6 @@ const SX127x = require('sx127x');
   process.on('SIGINT', function () {
     // close the device
     sx127x.close(function (err) {
-      console.log('close', err ? err : 'success');
       process.exit();
     });
   });
