@@ -53,12 +53,14 @@ add_message_files(
   Gyro.msg
   Gps.msg
   MapLocation.msg
+  Detection_parameter.msg
 )
 
 ## Generate services in the 'srv' folder
 add_service_files(
   FILES
   ComRadio.srv
+  map_location.srv
 #   Service1.srv
 #   Service2.srv
 )
