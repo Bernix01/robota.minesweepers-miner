@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 import rospy
 from minesweepers.msg import Detection_parameter
 from minesweepers.srv import map_location
