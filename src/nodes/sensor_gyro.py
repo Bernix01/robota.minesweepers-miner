@@ -2,7 +2,7 @@
 import rospy
 from minesweepers.msg import Gyro
 from mpu6050 import mpu6050
-from minesweepers.srv import SendMessage
+# from minesweepers.srv import ComRadio
 import time
 
 def sensor_gyro():

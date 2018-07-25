@@ -4,8 +4,8 @@ from minesweepers.msg import Detection_parameter
 from minesweepers.srv import map_location
 from std_msgs.msg import Bool
 
-class Detection():
 
+class Detection():
     topic = None
 
     def setup(self):

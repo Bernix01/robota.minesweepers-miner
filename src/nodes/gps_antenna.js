@@ -22,9 +22,7 @@ const Delimiter = SerialPort.parsers.Delimiter;
     baudRate: 9600
   });
 
-  const parser = new Readline();
-  const delimiter = new Delimiter({ delimiter: "\r\n" });
-  port.pipe(delimiter);
+  const parser = new Readline({ delimiter: '\r\n' });
   port.pipe(parser);
 
   port.write("AT\r\n");
@@ -50,12 +48,11 @@ const Delimiter = SerialPort.parsers.Delimiter;
         }
       });
 
-      port.on("data", function(data) {
-        const strData = data.toString("utf8");
-        if (strData == "OK\r\n") {
+      parser.on("data", function(data) {
+        if (data == "OK") {
           rosnodejs.log.info("Enabled GPS");
         } else {
-          gps.updatePartial(strData);
+          gps.updatePartial(data);
         }
       });
     })

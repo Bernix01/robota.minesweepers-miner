@@ -37,9 +37,6 @@ def sensor_pedro():
             # rospy.loginfo("DATA:" + str(data))
             # rospy.loginfo(data >= valor_min and data <= valor_max)
             if (data >= valor_min and data <= valor_max):
-                #hello_str = "hello world %s" % rospy.get_time()
-
-                # print, se escribe en el archivo de registro del nodo, write en el depurador rqt_console
                 rospy.loginfo("ENCONTRO METAL")
                 pub.publish(True)  # pub.publish publica en la variable pub
         except Exception as e:
