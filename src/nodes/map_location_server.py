@@ -14,12 +14,6 @@ def handler_map_location(req):
     rospy.loginfo("gpsD are %s, %s, %s, %s, %s", x_gps, y_gps, t_gps, acurracy_x_gps, acurracy_y_gps)
 
     k = 20
-    t_gyro = rospy.get_param('gyroD/t_gyro')
-    acurracy_x_gyro = rospy.get_param('gyroD/acurracy_x_gyro')
-    acurracy_y_gyro = rospy.get_param('gyroD/acurracy_y_gyro')
-    t_gps = rospy.get_param('gpsD/t_gps')
-    acurracy_x_gps = rospy.get_param('gyroD/acurracy_x_gps')
-    acurracy_y_gps = rospy.get_param('gyroD/acurracy_y_gps')
     t_now = rospy.get_rostime()
     rospy.loginfo("Current time %i %i", t_now.secs, t_now.nsecs)
     if not((t_now-t_gyro) < k or (t_now-t_gyro) < k):

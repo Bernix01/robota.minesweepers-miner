@@ -14,13 +14,13 @@ class Buscaminas():
         self.send_message = rospy.ServiceProxy('send_message', ComRadio)
 
     def detection_mine_cb(self, data):
-        if self.send_message(action="dm",payload=json.dumps(data)):
+        if self.send_message(action="dm", payload=json.dumps(data)):
             rospy.loginfo("Sent detection message!")
         else:
             rospy.logerr("Failed to send detection message!")
 
     def camera_cb(self, data):
-        if self.send_message(action="cm",payload=json.dumps(data)):
+        if self.send_message(action="cm", payload=json.dumps(data)):
             rospy.loginfo("Sent detection message!")
         else:
             rospy.logerr("Failed to send detection message!")

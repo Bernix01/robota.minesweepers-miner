@@ -1,6 +1,20 @@
 <launch>
   <rosparam param="GPIO_FOCO">17</rosparam>
   <rosparam param="GPS_START_POINT">[2.32232,7.34234]</rosparam>
+  <rosparam param="gyroD">
+  T_GYRO: 0.0
+  Y_GYRO: 0
+  X_GYRO: 0
+  ACURRACY_X_GYRO: 0
+  ACURRACY_Y_GYRO: 0
+  </rosparam>
+  <rosparam param="gpsD">
+  T_GPS: 0.0
+  Y_GPS: 0
+  X_GPS: 0
+  ACURRACY_X_GPS: 0
+  ACURRACY_Y_GPS: 0
+  </rosparam>
   <node name="sensor_gyro" pkg="minesweepers" type="sensor_gyro.py" />
   <node name="gps" pkg="minesweepers" type="gps_antenna.js" />
   <node name="radio" pkg="minesweepers" type="radio.js" />

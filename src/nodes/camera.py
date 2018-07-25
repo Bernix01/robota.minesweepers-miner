@@ -47,7 +47,7 @@ def camera():
         frame_data = []
         for i in range(len(conts)):
             x, y, w, h = cv2.boundingRect(conts[i])
-            frame_data.append([x, y, w, h])
+            frame_data += [x, y, w, h]
         # enviar por el topic frame_data
         pub.publish(json.dumps(frame_data))
         rate.sleep()
