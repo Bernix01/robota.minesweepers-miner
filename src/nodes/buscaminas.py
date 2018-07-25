@@ -11,7 +11,7 @@ class Buscaminas():
         rospy.Subscriber('detection_sensor_pedro',
                          Detection_parameter, self.detection_mine_cb)
         rospy.Subscriber('camera', Detection_parameter, self.camera_cb)
-        self.send_message = rospy.ServiceProxy('send_message', SendMessage)
+        self.send_message = rospy.ServiceProxy('send_message', ComRadio)
 
     def detection_mine_cb(self, data):
         if self.send_message(action="dm",payload=json.dumps(data)):
