@@ -33,7 +33,7 @@ const SX127x = require('sx127x');
 
     const service = nh.advertiseService('/send_message', ComRadioRequest, (req, resp) => {
       sx127x.write(new Buffer(req.str), function (err) {
-        resp = err ? err : 'Ok';
+        resp = err ? false: true;
       });
       return true;
     });
