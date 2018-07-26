@@ -38,8 +38,12 @@ def sensor_pedro():
             # rospy.loginfo(data >= valor_min and data <= valor_max)
             if (data >= valor_min and data <= valor_max):
                 rospy.loginfo("ENCONTRO METAL")
+                GPIO.output(gpio_foco, 1)
                 pub.publish(True)  # pub.publish publica en la variable pub
+            else:
+                GPIO.output(gpio_foco, 0)
         except Exception as e:
+            GPIO.output(gpio_foco, 0)
             rospy.logerr(e.message)
         finally:
             rate.sleep()  # funciona casi como un delay

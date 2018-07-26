@@ -20,17 +20,16 @@ def camera():
 
     # allow the camera to warmup
     time.sleep(0.1)
+    rate = rospy.Rate(2)  # 10hz
 
     while not rospy.is_shutdown():
         pub = rospy.Publisher('camera', String, queue_size=10)
         rospy.init_node('camera')
-        rate = rospy.Rate(10)  # 10hz
         # grab an image from the camera
         rawCapture = PiRGBArray(cam)
         cam.capture(rawCapture, format="bgr")
         img = rawCapture.array
         img = cv2.resize(img, (640, 480))
-
         # convert BGR to HSV
         imgHSV = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
         # create the Mask
