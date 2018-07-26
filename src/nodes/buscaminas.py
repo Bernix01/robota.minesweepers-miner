@@ -21,13 +21,13 @@ class Buscaminas():
             rospy.logerr("Failed to send detection message!")
 
     def camera_cb(self, data):
-        if self.send_message(action="cm", payload=json.dumps(data)):
+        if self.send_message(action="cm", payload=data.data):
             rospy.loginfo("Sent detection message!")
         else:
             rospy.logerr("Failed to send detection message!")
 
     def gps_cb(self, data):
-        if self.send_message(action="gps", payload=json.dumps(data)):
+        if self.send_message(action="gps", payload=json.dumps(data.data)):
             rospy.loginfo("Sent gps message!")
         else:
             rospy.logerr("Failed to send detection message!")
