@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 import rospy
 from std_msgs.msg import String, Bool
-from minesweepers.msg import Detection_parameter
 from minesweepers.srv import ComRadio
+from minesweepers.msg import Gps
 import json
 
 
@@ -11,7 +11,7 @@ class Buscaminas():
         rospy.Subscriber('detection_sensor_pedro',
                          Bool, self.detection_mine_cb)
         rospy.Subscriber('camera', String, self.camera_cb)
-        rospy.Subscriber('gps_data', String, self.gps_cb)
+        rospy.Subscriber('gps_data', Gps, self.gps_cb)
         self.send_message = rospy.ServiceProxy('send_message', ComRadio)
 
     def detection_mine_cb(self, data):

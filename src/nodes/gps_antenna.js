@@ -31,7 +31,7 @@ const Readline = SerialPort.parsers.Readline;
   nh.getParam("GPS_START_POINT")
     .then(GPS_START_POINT => {
       gps.on("data", function(data) {
-        // rosnodejs.log.info(data, gps.state);
+        rosnodejs.log.info(gps.state);
         // rosnodejs.log.info(JSON.stringify(data));
         const state = gps.state;
         if (state && state.lat && state.lon) {
