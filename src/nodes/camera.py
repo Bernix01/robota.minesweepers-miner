@@ -9,7 +9,7 @@ from picamera.array import PiRGBArray
 from picamera import PiCamera
 
 
-def camera():       
+def camera():
     lowerBound = np.array([0, 0, 0])
     upperBound = np.array([349, 70, 30])
 
@@ -35,7 +35,7 @@ def camera():
         imgHSV = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
         # create the Mask
         mask = cv2.inRange(imgHSV, lowerBound, upperBound)
-        #bitwise and 
+        # bitwise and
         res = cv2.bitwise_and(img, img, mask=mask)
         # morphology
         maskOpen = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernelOpen)
@@ -44,11 +44,10 @@ def camera():
         cpy = maskFinal.copy()
         _, conts, h = cv2.findContours(
             cpy, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
-        frame_data = []
+        frame_data = ""
         for i in range(len(conts)):
             x, y, w, h = cv2.boundingRect(conts[i])
-            frame_data += [x, y, w, h]
-        # enviar por el topic frame_data
+            frame_data += str(x) + str(y) + str(w) + str(h) + ";"
         pub.publish(json.dumps(frame_data))
         rate.sleep()
 
