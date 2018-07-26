@@ -36,11 +36,9 @@ const Readline = SerialPort.parsers.Readline;
         const state = gps.state;
         if (state && state.lat && state.lon) {
           const msg = new GPSMessage();
-          const distance = gps.distance(GPS_START_POINT[0],GPS_START_POINT[1],state.lat,state.lon)
           msg.data = {
             lat: state.lat,
-            lng: state.lon,
-            distance: distance
+            lng: state.lon
           };
           pub.publish(msg);
         }

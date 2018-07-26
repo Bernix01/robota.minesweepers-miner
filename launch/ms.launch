@@ -21,6 +21,6 @@
   <node name="sensor_pedro" pkg="minesweepers" type="sensor_pedro.py" />
   <node name="buscaminas" pkg="minesweepers" type="buscaminas.py" />
   <node name="camera" pkg="minesweepers" type="camera.py" />
-  <node name="mine_detection" pkg="minesweepers" type="detectionMine.py" />
-  <node name="map_location" pkg="minesweepers" type="map_location_server.py" />
+  <!-- <node name="mine_detection" pkg="minesweepers" type="detectionMine.py" />
+  <node name="map_location" pkg="minesweepers" type="map_location_server.py" /> -->
 </launch>

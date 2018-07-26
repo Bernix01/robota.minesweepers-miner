@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import rospy
-from std_msgs.msg import String
+from std_msgs.msg import String, Bool
 from minesweepers.msg import Detection_parameter
 from minesweepers.srv import ComRadio
 import json
@@ -9,8 +9,9 @@ import json
 class Buscaminas():
     def __init__(self):
         rospy.Subscriber('detection_sensor_pedro',
-                         Detection_parameter, self.detection_mine_cb)
+                         Bool, self.detection_mine_cb)
         rospy.Subscriber('camera', String, self.camera_cb)
+        rospy.Subscriber('gps_data', String, self.gps_cb)
         self.send_message = rospy.ServiceProxy('send_message', ComRadio)
 
     def detection_mine_cb(self, data):
@@ -25,13 +26,17 @@ class Buscaminas():
         else:
             rospy.logerr("Failed to send detection message!")
 
+    def gps_cb(self, data):
+        if self.send_message(action="gps", payload=json.dumps(data)):
+            rospy.loginfo("Sent gps message!")
+        else:
+            rospy.logerr("Failed to send detection message!")
+
 
 if __name__ == '__main__':
     try:
         rospy.init_node('buscaminas')
         rospy.wait_for_service('send_message')
-        # rospy.wait_for_node('camera')
-        # rospy.wait_for_node('detection_sensor_pedro')
         node = Buscaminas()
         rospy.spin()
     except rospy.ROSInterruptException:
