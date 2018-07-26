@@ -15,13 +15,11 @@ def sensor_gyro():
         accelerometer_data = sensor.get_accel_data()
         gyro_data = sensor.get_gyro_data()
         curr_time = time.time()
-        sensor_data_str = str(accelerometer_data['x']) + "," + str(accelerometer_data['y']) + "," + str(accelerometer_data['z']) + "," + str(curr_time - start)
         # try:
         #     send_message = rospy.ServiceProxy('send_message', SendMessage)
         #     resp1 = send_message(sensor_data_str)
         # except rospy.ServiceException, e:
         #     print "Service call failed: %s"%e
-        rospy.loginfo(sensor_data_str)
         
         if pub.get_num_connections() > 0:
             pub.publish(gyro_data['x'],gyro_data['y'], gyro_data['z'])
