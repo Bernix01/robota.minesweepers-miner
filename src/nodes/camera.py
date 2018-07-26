@@ -44,10 +44,13 @@ def camera():
         cpy = maskFinal.copy()
         _, conts, h = cv2.findContours(
             cpy, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
-        frame_data = ""
+        frame_data = []
         for i in range(len(conts)):
             x, y, w, h = cv2.boundingRect(conts[i])
-            frame_data += str(x) + str(y) + str(w) + str(h) + ";"
+            frame_data.append(x)
+            frame_data.append(y)
+            frame_data.append(w)
+            frame_data.append(h)
         pub.publish(json.dumps(frame_data))
         rate.sleep()
 

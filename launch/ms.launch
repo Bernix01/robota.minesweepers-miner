@@ -1,5 +1,5 @@
 <launch>
-  <rosparam param="GPIO_FOCO">17</rosparam>
+  <rosparam param="GPIO_FOCO">26</rosparam>
   <rosparam param="GPS_START_POINT">[2.32232,7.34234]</rosparam>
   <rosparam param="gyroD">
   T_GYRO: 0.0
